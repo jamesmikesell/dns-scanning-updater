@@ -1,0 +1,20 @@
+{
+  "cloudflareUpdater": [
+    {
+      "cloudflareApiToken": "put token here",
+      "domainName": "example.com",
+      "fullSubDomainName": "my-mac.example.com",
+      "ttl": 600,
+      "lanHostName": "my-mac-book.local",
+      "updateIntervalSeconds": 60
+    },
+    {
+      "cloudflareApiToken": "put token here",
+      "domainName": "example.com",
+      "fullSubDomainName": "their-pc.example.com",
+      "ttl": 600,
+      "lanHostName": "their-windows-pc.local",
+      "updateIntervalSeconds": 60
+    }
+  ]
+}
