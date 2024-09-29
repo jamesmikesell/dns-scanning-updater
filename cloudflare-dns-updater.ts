@@ -18,7 +18,6 @@ export class CloudflareDNSUpdater {
       throw new Error(`Unable to retrieve Zone ID for ${config.domain}.`);
     }
 
-    console.log(`Zone ID for ${config.domain}: ${zoneId}`);
     return zoneId;
   }
 
@@ -41,7 +40,6 @@ export class CloudflareDNSUpdater {
       throw new Error(`Unable to retrieve DNS Record ID for ${config.subdomain}.`);
     }
 
-    console.log(`DNS Record ID for ${config.subdomain}: ${dnsRecordId}`);
     return dnsRecordId;
   }
 
