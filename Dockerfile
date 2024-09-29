@@ -1,15 +1,4 @@
-FROM ubuntu:24.04 as base
-USER root
-RUN apt-get update && apt-get install -y nodejs
-
-
-
-FROM base as build
-
-USER root
-
-RUN apt-get update && apt-get install -y npm
-
+FROM node:20-alpine as build
 RUN mkdir /dns-updater
 WORKDIR /dns-updater
 
@@ -21,7 +10,7 @@ COPY *.ts tsconfig.json /dns-updater/
 RUN npx tsc
 
 
-FROM base
+FROM node:20-alpine
 RUN mkdir /dns-updater
 WORKDIR /dns-updater
 COPY --from=build /dns-updater/*.js /dns-updater/
@@ -33,5 +22,8 @@ COPY --from=build /dns-updater/*.js /dns-updater/
 
 # To run
 # docker build . && docker run --rm -v $(pwd)/secret-config.json:/dns-updater/config.json $(docker build -q .)
+
+
+# docker run --rm -it -v $(pwd)/secret-config.json:/dns-updater/config.json ghcr.io/jamesmikesell/dns-scanning-updater /bin/bash
 
 CMD ["node", "index.js"]
