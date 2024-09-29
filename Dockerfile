@@ -1,4 +1,4 @@
-FROM node:20-alpine as build
+FROM node:20 as build
 RUN mkdir /dns-updater
 WORKDIR /dns-updater
 
@@ -10,7 +10,7 @@ COPY *.ts tsconfig.json /dns-updater/
 RUN npx tsc
 
 
-FROM node:20-alpine
+FROM node:20
 RUN mkdir /dns-updater
 WORKDIR /dns-updater
 COPY --from=build /dns-updater/*.js /dns-updater/
