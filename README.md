@@ -13,10 +13,8 @@ Container to check the LAN IP address of hosts on a network, and if necessary up
 
 ### Updating Config
 1. Update the config file
-1. Run 
-    ```
-    docker container restart dns-updater
-    ```
+1. If the container is still running, no further action is needed
+
 
 
 ### Updating to Latest Version

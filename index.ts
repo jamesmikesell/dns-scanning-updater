@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import { ConfigFile, Runner } from './runner';
+import { Config } from './config';
+import { Runner } from './runner';
 
 
 function shutdown() {
@@ -10,8 +10,6 @@ process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
 
 
-const data = fs.readFileSync("./config.json", { encoding: 'utf8' });
-const configFile: ConfigFile = JSON.parse(data);
-
-Runner.run(configFile.cloudflareUpdater);
+new Config()
+new Runner()
 
