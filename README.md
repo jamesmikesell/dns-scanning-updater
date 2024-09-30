@@ -4,10 +4,32 @@ Container to check the LAN IP address of hosts on a network, and if necessary up
 
 
 ### Usage:
-1. create a config file `config.json`  (see `sample-config.json` for config layout)
+1. create a config file `config.json` with the following format
+    ```json
+    {
+      "cloudflareUpdater": [
+        {
+          "cloudflareApiToken": "put token here",
+          "domainName": "example.com",
+          "fullSubDomainName": "my-mac.example.com",
+          "ttl": 600,
+          "lanHostName": "my-mac-book.local",
+          "updateIntervalSeconds": 60
+        },
+        {
+          "cloudflareApiToken": "put token here",
+          "domainName": "example.com",
+          "fullSubDomainName": "their-pc.example.com",
+          "ttl": 600,
+          "lanHostName": "their-windows-pc.lan",
+          "updateIntervalSeconds": 60
+        }
+      ]
+    }
+    ```
 1. run the following
     ```
-    docker run --restart unless-stopped -d --name dns-updater -v $(pwd)/config.json:/dns-updater/config.json ghcr.io/jamesmikesell/dns-scanning-updater
+    docker run --restart unless-stopped -d --name dns-updater --network=host -v $(pwd)/config.json:/dns-updater/config.json ghcr.io/jamesmikesell/dns-scanning-updater
     ```
 
 
