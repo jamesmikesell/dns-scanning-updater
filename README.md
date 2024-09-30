@@ -46,5 +46,5 @@ Container to check the LAN IP address of hosts on a network, and if necessary up
     docker container stop dns-updater
     docker container rm dns-updater
     docker pull ghcr.io/jamesmikesell/dns-scanning-updater
-    docker run --restart unless-stopped -d --name dns-updater -v $(pwd)/config.json:/dns-updater/config.json ghcr.io/jamesmikesell/dns-scanning-updater
+    docker run --restart unless-stopped -d --name dns-updater --network=host -v $(pwd)/config.json:/dns-updater/config.json ghcr.io/jamesmikesell/dns-scanning-updater
     ```
