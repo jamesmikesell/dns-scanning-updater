@@ -8,23 +8,23 @@ RUN npm i
 
 COPY *.ts tsconfig.json /dns-updater/
 RUN npx tsc
+RUN npm prune --omit=dev
 
 
 FROM node:20
-RUN mkdir /dns-updater
 WORKDIR /dns-updater
-COPY --from=build /dns-updater/*.js /dns-updater/
+COPY --from=build /dns-updater /dns-updater
 
 
 
 # Build and get a terminal
-# docker build . && docker run --rm -it -v $(pwd)/secret-config.json:/dns-updater/config.json $(docker build -q .) sh
+# docker build . && docker run --rm -it -v $(pwd)/secret-config.json:/dns-updater/config.json $(docker build -q .) /bind/bash
 
 # Build and run
 # docker build . && docker run --rm -v $(pwd)/secret-config.json:/dns-updater/config.json $(docker build -q .)
 
 
 # Get a terminal from github image
-# docker run --rm -it -v $(pwd)/secret-config.json:/dns-updater/config.json ghcr.io/jamesmikesell/dns-scanning-updater sh
+# docker run --rm -it -v $(pwd)/secret-config.json:/dns-updater/config.json ghcr.io/jamesmikesell/dns-scanning-updater /bind/bash
 
 CMD ["node", "index.js"]
