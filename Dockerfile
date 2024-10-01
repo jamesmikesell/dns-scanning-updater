@@ -18,13 +18,13 @@ COPY --from=build /dns-updater /dns-updater
 
 
 # Build and get a terminal
-# docker build . && docker run --rm -it -v $(pwd)/secret-config.json:/dns-updater/config.json $(docker build -q .) /bind/bash
+# docker build . && docker run --rm -it -v $(pwd)/secret-config.json:/dns-updater/config.json $(docker build -q .) /bin/bash
 
 # Build and run
 # docker build . && docker run --rm -v $(pwd)/secret-config.json:/dns-updater/config.json $(docker build -q .)
 
 
 # Get a terminal from github image
-# docker run --rm -it -v $(pwd)/secret-config.json:/dns-updater/config.json ghcr.io/jamesmikesell/dns-scanning-updater /bind/bash
+# docker run --rm -it -v $(pwd)/secret-config.json:/dns-updater/config.json ghcr.io/jamesmikesell/dns-scanning-updater /bin/bash
 
 CMD ["node", "index.js"]
