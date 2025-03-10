@@ -28,4 +28,18 @@ export class IpResolver {
       });
     });
   }
+
+
+  static async getExternalPublicIpAddress(): Promise<string | undefined> {
+    try {
+      const response = await fetch("https://api64.ipify.org?format=json");
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+
+      const data: { ip: string } = await response.json();
+      return data.ip;
+    } catch (error) {
+      console.error("Error fetching IP address:", error);
+    }
+  }
 }

@@ -54,8 +54,15 @@ export class Synchronizer {
   private async tryUpdate(config: CloudflareConfig): Promise<boolean> {
     console.log(`Running updater for ${config.fullSubDomainName}`);
 
-    const host = config.lanHostName;;
-    const lanIpAddress = await IpResolver.getIPAddressOfLanName(host);
+    let lanIpAddress: string | undefined;
+    let host: string;
+    if (config.resolveExternalIp) {
+      host = "External Public IP";
+      lanIpAddress = await IpResolver.getExternalPublicIpAddress();
+    } else {
+      host = config.lanHostName;
+      lanIpAddress = await IpResolver.getIPAddressOfLanName(host);
+    }
 
     let updated = false;
     if (lanIpAddress) {

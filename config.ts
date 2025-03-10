@@ -31,6 +31,7 @@ export interface CloudflareConfig {
   fullSubDomainName: string,
   ttl: number,
   lanHostName: string,
+  resolveExternalIp: boolean,
   updateIntervalSeconds: number,
 }
 

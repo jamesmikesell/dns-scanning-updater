@@ -19,6 +19,14 @@ Container to check the LAN IP address of hosts on a network, and if necessary up
         {
           "cloudflareApiToken": "put token here",
           "domainName": "example.com",
+          "fullSubDomainName": "external-public-ip.example.com",
+          "ttl": 600,
+          "resolveExternalIp": true,
+          "updateIntervalSeconds": 60
+        },
+        {
+          "cloudflareApiToken": "put token here",
+          "domainName": "example.com",
           "fullSubDomainName": "their-pc.example.com",
           "ttl": 600,
           "lanHostName": "their-windows-pc.lan",
